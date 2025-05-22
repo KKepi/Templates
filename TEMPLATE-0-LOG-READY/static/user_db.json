@@ -1,0 +1,29 @@
+{
+    "users": [
+        {
+            "username": "admin",
+            "password": "admin",
+            "role": "admin"
+        },
+        {
+            "username": "skladnik",
+            "password": "skladnik",
+            "role": "skladnik"
+        },
+        {
+            "username": "hajzlik",
+            "password": "hajzlik",
+            "role": "skladnik"
+        },
+        {
+            "username": "s",
+            "password": "s",
+            "role": "skladnik"
+        },
+        {
+            "username": "na",
+            "password": "na",
+            "role": "admin"
+        }
+    ]
+}
