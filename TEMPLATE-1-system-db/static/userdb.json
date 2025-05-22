@@ -1,0 +1,33 @@
+{
+    "users": [
+        {
+            "username": "admin",
+            "password": "admin",
+            "role": "admin"
+        },
+        {
+            "username": "skladnik",
+            "password": "skladnik",
+            "role": "skladnik"
+        },
+        {
+            "username": "kokot",
+            "password": "kokot"
+        },
+        {
+            "username": "vymdanec",
+            "password": "vymdanec",
+            "role": "skladnik"
+        },
+        {
+            "username": "curak",
+            "password": "curak",
+            "role": "skladnik"
+        },
+        {
+            "username": "a",
+            "password": "a",
+            "role": "skladnik"
+        }
+    ]
+}

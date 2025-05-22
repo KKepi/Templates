@@ -1,0 +1,65 @@
+<!-- templates/todos.html -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Seznam úkolů</title>
+  </head>
+  <body>
+    <h1>Seznam úkolů</h1>
+    <table border="1" cellpadding="5" cellspacing="0">
+      <tr>
+        <th>Stav</th>
+        <th>Úkol</th>
+        <th>Akce</th>
+      </tr>
+      {% for category, tasks in todos.items() %}
+        <tr>
+          <td colspan="3"><strong>{{ category|capitalize }}</strong></td>
+        </tr>
+        {% for task in tasks %}
+          <tr>
+            <td>
+              {% if task[0] == 0 %}
+                Nehotovo
+              {% else %}
+                Hotovo
+              {% endif %}
+            </td>
+            <td>{{ task[1] }}</td>
+            <td>
+              {% if task[0] == 0 %}
+              <form method="POST" action="/mark_done" style="display:inline;">
+                <input type="hidden" name="category" value="{{ category }}">
+                <input type="hidden" name="task" value="{{ task[1] }}">
+                <input type="submit" value="Označit jako hotovo">
+              </form>
+              {% endif %}
+              <form method="POST" action="/edit_task" style="display:inline;">
+                <input type="hidden" name="category" value="{{ category }}">
+                <input type="hidden" name="old_task" value="{{ task[1] }}">
+                <input type="text" name="new_task" placeholder="Nový text úkolu" required>
+                <input type="submit" value="Upravit">
+              </form>
+              <form method="POST" action="/delete_task" style="display:inline;">
+                <input type="hidden" name="category" value="{{ category }}">
+                <input type="hidden" name="task" value="{{ task[1] }}">
+                <input type="submit" value="Odstranit">
+              </form>
+            </td>
+          </tr>
+        {% endfor %}
+      {% endfor %}
+    </table>
+    <!-- Filtrace úkolů -->
+    <form method="GET" action="/todos">
+      <label for="filter">Filtr:</label>
+      <select name="filter" id="filter">
+        <option value="all">Všechny</option>
+        <option value="done">Hotové</option>
+        <option value="not_done">Nehotové</option>
+      </select>
+      <input type="submit" value="Filtrovat">
+    </form>
+  </body>
+</html>

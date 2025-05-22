@@ -1,0 +1,37 @@
+{
+    "users": [
+        {
+            "username": "test",
+            "password": "test",
+            "todo": {
+                "work": [
+                    [
+                        0,
+                        "dada"
+                    ],
+                    [
+                        0,
+                        "dada"
+                    ],
+                    [
+                        0,
+                        "dada"
+                    ]
+                ],
+                "personal": [],
+                "study": [],
+                "activity": []
+            }
+        },
+        {
+            "username": "hovno",
+            "password": "hovno",
+            "todo": {
+                "work": [],
+                "personal": [],
+                "study": [],
+                "activity": []
+            }
+        }
+    ]
+}

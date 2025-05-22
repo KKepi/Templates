@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html><body>
+  <h1>Objednávky</h1>
+  <table>
+    <tr><th>ID</th><th>Produkt</th><th>Množství</th><th>Stav</th><th>Datum</th></tr>
+    {% for o in orders %}
+    <tr>
+      <td><a href="/orders/{{ o.id }}">{{ o.id }}</a></td>
+      <td>{{ o.produkt.nazev }}</td>
+      <td>{{ o.mnozstvi }}</td>
+      <td>{{ o.status }}</td>
+      <td>{{ o.datum.strftime('%Y-%m-%d %H:%M') }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+  <h2>Nová objednávka</h2>
+  <form method="post" action="/orders">
+    Produkt ID: <input name="produkt_id"><br>
+    Množství: <input name="mnozstvi"><br>
+    <button type="submit">Vytvořit objednávku</button>
+  </form>
+</body></html>

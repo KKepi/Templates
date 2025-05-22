@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+  </head>
+  <body>
+    <main>
+      <h1>Úkoly</h1>
+      <form id="ukoly-seznam" action="/todos" method="GET">
+        <input type="submit" value="Zobrazit úkoly">
+      </form>
+
+      <h1>Přidat úkol</h1>
+      <form id="login-form" action="/add" method="POST">
+        <label for "ukol">Vyberte typ úkolu:</label>
+          <select name="kategorie">
+            <option value="work">Práce</option>
+            <option value="personal">Osobní</option>
+            <option value="study">Studium</option>
+            <option value="activity">Aktivita</option>
+          </select>
+
+        <label>Úkol: </label>
+        <input type="text" name="ukol" placeholder="úkol" required> <br><br>
+        <input type="submit" value="Přidat">
+      </form>
+    </main>
+  </body>
+</html>
