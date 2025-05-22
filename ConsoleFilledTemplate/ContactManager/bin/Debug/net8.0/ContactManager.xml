@@ -1,0 +1,173 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ContactManager</name>
+    </assembly>
+    <members>
+        <member name="T:ContactManager.Objects.DbConfig">
+            <summary>
+            Statická třída poskytující připojovací řetězec k databázi.
+            </summary>
+        </member>
+        <member name="P:ContactManager.Objects.DbConfig.ConnectionString">
+            <summary>
+            Vrací ConnectionString pro SQL Server.
+            </summary>
+        </member>
+        <member name="T:ContactManager.Objects.IPrototype`1">
+            <summary>
+            Rozhraní umožňující klonování objektů (vzor Prototype).
+            </summary>
+            <typeparam name="T">Typ objektu, který lze klonovat.</typeparam>
+        </member>
+        <member name="M:ContactManager.Objects.IPrototype`1.Clone">
+            <summary>
+            Vytvoří povrchovou kopii aktuální instance.
+            </summary>
+            <returns>Kopie objektu typu T.</returns>
+        </member>
+        <member name="T:ContactManager.Objects.User">
+            <summary>
+            Reprezentuje uživatele aplikace s přihlašovacími údaji.
+            </summary>
+        </member>
+        <member name="P:ContactManager.Objects.User.ID">
+            <summary>Jedinečný identifikátor uživatele.</summary>
+        </member>
+        <member name="P:ContactManager.Objects.User.Username">
+            <summary>Přihlašovací jméno uživatele.</summary>
+        </member>
+        <member name="P:ContactManager.Objects.User.PasswordHash">
+            <summary>Hash hesla uživatele (SHA-256, Base64).</summary>
+        </member>
+        <member name="M:ContactManager.Objects.User.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="T:ContactManager.Objects.Contact">
+            <summary>
+            Reprezentuje kontakt spojený s uživatelem.
+            </summary>
+        </member>
+        <member name="P:ContactManager.Objects.Contact.ID">
+            <summary>Jedinečný identifikátor kontaktu.</summary>
+        </member>
+        <member name="P:ContactManager.Objects.Contact.Nazev">
+            <summary>Název (jméno) kontaktu.</summary>
+        </member>
+        <member name="P:ContactManager.Objects.Contact.UserID">
+            <summary>ID uživatele, ke kterému kontakt náleží.</summary>
+        </member>
+        <member name="T:ContactManager.Objects.ICommander">
+            <summary>
+            Rozhraní pro příkazový vzor definující metody Execute a Undo.
+            </summary>
+        </member>
+        <member name="M:ContactManager.Objects.ICommander.Execute">
+            <summary>Provede příkazovou akci.</summary>
+        </member>
+        <member name="M:ContactManager.Objects.ICommander.Undo">
+            <summary>Zruší dříve provedenou akci.</summary>
+        </member>
+        <member name="T:ContactManager.Objects.CopyContact">
+            <summary>
+            Příkaz pro kopírování kontaktu (vzor Command).
+            </summary>
+        </member>
+        <member name="F:ContactManager.Objects.CopyContact.lastAddedContact">
+            <summary>Poslední vložený (zkopírovaný) kontakt pro Undo.</summary>
+        </member>
+        <member name="M:ContactManager.Objects.CopyContact.#ctor(ContactManager.Objects.User,ContactManager.Objects.Contact)">
+            <summary>
+            Inicializuje nový příkaz CopyContact.
+            </summary>
+            <param name="user">Uživatel, který kopii provádí.</param>
+            <param name="contact">Kontakt, který se kopíruje.</param>
+        </member>
+        <member name="M:ContactManager.Objects.CopyContact.Execute">
+            <inheritdoc/>
+        </member>
+        <member name="M:ContactManager.Objects.CopyContact.Undo">
+            <inheritdoc/>
+        </member>
+        <member name="T:ContactManager.Objects.DeleteContact">
+            <summary>
+            Příkaz pro smazání existujícího kontaktu.
+            </summary>
+        </member>
+        <member name="M:ContactManager.Objects.DeleteContact.#ctor(ContactManager.Objects.User,ContactManager.Objects.Contact)">
+            <summary>
+            Inicializuje nový příkaz DeleteContact.
+            </summary>
+        </member>
+        <member name="M:ContactManager.Objects.DeleteContact.Execute">
+            <inheritdoc/>
+        </member>
+        <member name="M:ContactManager.Objects.DeleteContact.Undo">
+            <inheritdoc/>
+        </member>
+        <member name="T:ContactManager.Objects.AddContact">
+            <summary>
+            Příkaz pro přidání nového kontaktu.
+            </summary>
+        </member>
+        <member name="F:ContactManager.Objects.AddContact.lastAddedContact">
+            <summary>Poslední vložený kontakt pro Undo.</summary>
+        </member>
+        <member name="M:ContactManager.Objects.AddContact.#ctor(ContactManager.Objects.User,ContactManager.Objects.Contact)">
+            <summary>
+            Inicializuje nový příkaz AddContact.
+            </summary>
+            <param name="user">Uživatel, který kontakt přidává.</param>
+            <param name="contact">Kontakt k přidání.</param>
+        </member>
+        <member name="M:ContactManager.Objects.AddContact.Execute">
+            <inheritdoc/>
+        </member>
+        <member name="M:ContactManager.Objects.AddContact.Undo">
+            <inheritdoc/>
+        </member>
+        <member name="T:ContactManager.Objects.Controller">
+            <summary>
+            Správce provádění příkazů s podporou Undo/Redo.
+            </summary>
+        </member>
+        <member name="M:ContactManager.Objects.Controller.ExecuteCommand(ContactManager.Objects.ICommander)">
+            <summary>Provede příkaz a uloží ho do historie pro Undo/Redo.</summary>
+        </member>
+        <member name="M:ContactManager.Objects.Controller.Undo">
+            <summary>Vrátí zpět poslední provedený příkaz.</summary>
+        </member>
+        <member name="M:ContactManager.Objects.Controller.Redo">
+            <summary>Opakuje poslední vrácený příkaz.</summary>
+        </member>
+        <member name="T:ContactManager.Objects.UserContacts">
+            <summary>
+            Umožňuje procházet kontakty uživatele pomocí foreach (Iterator Pattern).
+            </summary>
+        </member>
+        <member name="M:ContactManager.Objects.UserContacts.#ctor(ContactManager.Objects.User)">
+            <summary>Inicializuje nové procházení kontaktů pro uživatele.</summary>
+        </member>
+        <member name="M:ContactManager.Objects.UserContacts.loadContacts">
+            <summary>Načte kontakty z databáze do seznamu.</summary>
+            <returns>Seznam kontaktů uživatele.</returns>
+        </member>
+        <member name="M:ContactManager.Objects.UserContacts.GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="T:ContactManager.Objects.CredentialProvider">
+            <summary>
+            Zajišťuje registraci a přihlášení uživatelů.
+            </summary>
+        </member>
+        <member name="M:ContactManager.Objects.CredentialProvider.LogIn(System.String,System.String)">
+            <summary>Přihlásí existujícího uživatele.</summary>
+            <param name="username">Uživatelské jméno.</param>
+            <param name="password">Heslo v čistém textu.</param>
+            <returns>Autentizovaný <see cref="T:ContactManager.Objects.User"/>.</returns>
+        </member>
+        <member name="M:ContactManager.Objects.CredentialProvider.HashPassword(System.String)">
+            <summary>Vytvoří SHA-256 hash hesla v Base64.</summary>
+        </member>
+    </members>
+</doc>
