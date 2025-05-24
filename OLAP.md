@@ -4,6 +4,10 @@ OLTP (transactional)
 OLAP (analytical)
 - databáze pro analýzu
 
+Cyklus
+- OLTP (.csv) -> ETL (python) -> OLAP (postgre)
+
+
 MOLAP
 - Cube (předpočítané uspořádané data dle os)
   - osa x: kategorie
